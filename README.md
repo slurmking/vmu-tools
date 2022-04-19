@@ -14,6 +14,7 @@ This python project is designed to be a fully loaded suite of VMU tools for the 
 * Change VMU color
 * Convert VMU dumps to and from .DCI files
 * Modify VMU ICONDATA from VMU dumps
+* Possibly implament a built in webserver for file transfers from Dreamcast
 
 
 
