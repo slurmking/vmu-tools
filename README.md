@@ -15,3 +15,15 @@ This python project is designed to be a fully loaded suite of VMU tools for the 
 * Convert VMU dumps to and from .DCI files
 * Modify VMU ICONDATA from VMU dumps
 
+
+
+
+----
+##### Special Thanks  to:
+* Marcus Comstedt https://mc.pp.se/dc/
+	* For providing the best documentation on the Dreamcast 
+* [mrneo240](https://www.dreamcast-talk.com/forum/memberlist.php?mode=viewprofile&u=8938)
+	* for assistance on creating ICONDATA tools
+*  [bucanero](https://github.com/bucanero)
+	* For providing a dump of usefull test files
+
