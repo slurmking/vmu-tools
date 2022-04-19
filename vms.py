@@ -118,5 +118,3 @@ class VMS:
             self.filetype = 0
             self.gamesaveRead()
             self.validate()
-
-
