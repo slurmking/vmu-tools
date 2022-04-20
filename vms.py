@@ -70,10 +70,10 @@ class Vms:
         save = self.description
         if self.filetype == 2:
             save = self.title
-        image_gen.animatedGen(self.icon_bitmaps, self.icon_palette, self.icon_count, save, self.animation_speed)
+        image_gen.animated_gen(self.icon_bitmaps, self.icon_palette, self.icon_count, save, self.animation_speed)
         if self.filetype == 1:
             # Keeps leading zeros from monoBitmap bytes
-            image_gen.bnwGen((bin(int('1' + self.mono_bitmap.hex(), 16))[3:]), save)
+            image_gen.bnw_gen((bin(int('1' + self.mono_bitmap.hex(), 16))[3:]), save)
 
     def info(self):
         """Generates Info Dictionary"""

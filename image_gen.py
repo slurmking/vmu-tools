@@ -1,10 +1,15 @@
-from PIL import Image
+"""tools to read and generate images from vms icons"""
 import re
-colorRender = []
-bnwRender = []
+from PIL import Image
 
-def palletGetColor(input):
-    bits = input.hex()
+
+color_render = []
+bnw_render = []
+
+
+def palette_get_color(palette):
+    """generates RGB string from VMS palette"""
+    bits = palette.hex()
     green = f"{bits[0]}{bits[0]}"
     blue = f"{bits[1]}{bits[1]}"
     alpha = f"{bits[2]}{bits[2]}"
@@ -12,54 +17,53 @@ def palletGetColor(input):
     return (int(red, base=16), int(green, base=16), int(blue, base=16))
 
 
-def colorGen(colorImage,pallet,save):
-    for i, pixel in enumerate(colorImage.hex()):
+def color_gen(color_image, pallet):
+    """Generates color image from VMS"""
+    for i, pixel in enumerate(color_image.hex()):
         position = (i % 32, int(i / 32))
-        colorMap = int(str(pixel), base=16)
-        pixelValue = (position, pallet[colorMap])
-        colorRender.append(pixelValue)
+        color_map = int(str(pixel), base=16)
+        pixel_value = (position, pallet[color_map])
+        color_render.append(pixel_value)
     img = Image.new('RGB', (32, 32))
-    for line in colorRender:
-        img.putpixel(line[0],line[1])
-    # img.save(f'{save}.png')
-    bigImg = img.resize((512,512),resample=4)
-    # bigImg.save(f'{save}.png')
-    return bigImg
+    for line in color_render:
+        img.putpixel(line[0], line[1])
+    big_img = img.resize((512, 512), resample=4)
+    return big_img
 
 
-def bnwGen(bits, save):
+def bnw_gen(bits, save):
+    """Generates image from black and white icon"""
     for i, value in enumerate(bits):
         position = (i % 32, int(i / 32))
         value = int(value)
         if value == 0:
             color = (143, 205, 175)
         else:
-            color = (8,20,128)
-        pixelValue = (position, color)
-        bnwRender.append(pixelValue)
+            color = (8, 20, 128)
+        pixel_value = (position, color)
+        bnw_render.append(pixel_value)
     img = Image.new('RGB', (32, 32))
-    for line in bnwRender:
-        img.putpixel(line[0],line[1])
+    for line in bnw_render:
+        img.putpixel(line[0], line[1])
     # img.save('bnw.png')
-    bigImg = img.resize((512,512),resample=4)
-    bigImg.save(f'{save}bnw.png')
-    return bigImg
-def animatedGen(bitmaps,pallet,frames,save,speed):
+    big_img = img.resize((512, 512), resample=4)
+    big_img.save(f'{save}bnw.png')
+    return big_img
+
+
+def animated_gen(bitmaps, pallet, frames, save, speed):
+    """Generates gif from VMS frames"""
     save = re.sub(r'\W+', '', save)
     save.strip("/")
-    palletList = []
-    hashCheck = []
-    for x in range(0, 31, 2):
-        palletList.append(palletGetColor(pallet[x:x + 2]))
+    pallet_list = []
+    for number in range(0, 31, 2):
+        pallet_list.append(palette_get_color(pallet[number:number + 2]))
     if frames > 1:
         gif = []
         for i in range(0, frames * 512, 512):
-            frame = colorGen(bitmaps[i:i + 512], palletList,f"{save}")
-            gif.append(frame.resize((512,512),resample=4))
+            frame = color_gen(bitmaps[i:i + 512], pallet_list)
+            gif.append(frame.resize((512, 512), resample=4))
             gif[0].save(f"{save}.gif", save_all=True,
-                             append_images=gif, duration=(speed/30)*frames, loop=0)
+                        append_images=gif, duration=(speed / 30) * frames, loop=0)
     else:
-        colorGen(bitmaps, palletList,save).save(f'{save}.png')
-
-
-
+        color_gen(bitmaps, pallet_list).save(f'{save}.png')
