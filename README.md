@@ -1,3 +1,4 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/vmu-tools)![PyPI - PyPi Version](https://img.shields.io/pypi/v/vmu-tools.svg)
 
 # VMU Tools
 
@@ -7,6 +8,8 @@ This python project is designed to be a fully loaded suite of VMU tools for the 
 * Read and extract data from .VMS and  .VMI files
 * Generate icons from ICONDATA and VMS files
 * Generate VMI files from VMS 
+* Read and manipulate VMU dumps files
+* Extract and upload savegames from VMU dump files
 
 ### Install 
 ``` python
@@ -21,13 +24,13 @@ import vmut
 VMS = vmut.vms.load_vms("example_files/SCALIBUR.VMS")  
 
 #Print info
-print(VMS.info)  
+print(animated_vms.info)  
 
 #Save icon
-VMS.image_save("animaed.gif")  
+animated_vms.image_save("animaed.gif")  
 
 #Generate Checksum
-print(VMS.generated_checksum())
+print(animated_vms.generated_checksum())
 ```
 
 
@@ -36,7 +39,6 @@ print(VMS.generated_checksum())
 ### Roadmap
 * Create ICONDATA and VMS icons from PNG and JPEG
 * Change VMU color
-* Read and manipulate VMU dumps files
 * Convert VMU dumps to and from .DCI files
 * Modify VMU ICONDATA from VMU dumps
 * Possibly implament a built in webserver for file transfers from Dreamcast
