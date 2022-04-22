@@ -10,6 +10,11 @@ This python project is designed to be a fully loaded suite of VMU tools for the 
 * Read and manipulate VMU dumps files
 * Extract and upload savegames from VMU dump files
 
+### Install 
+``` python
+pip install vmu-tools --upgrade
+```
+
 ### Example
 ```python
 import vmut
