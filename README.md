@@ -1,3 +1,4 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/vmu-tools)![PyPI - PyPi Version](https://img.shields.io/pypi/v/vmu-tools.svg)
 
 # VMU Tools
 
@@ -9,6 +10,11 @@ This python project is designed to be a fully loaded suite of VMU tools for the 
 * Generate VMI files from VMS 
 * Read and manipulate VMU dumps files
 * Extract and upload savegames from VMU dump files
+
+### Install 
+``` python
+pip install vmu-tools --upgrade
+```
 
 ### Example
 ```python
@@ -25,6 +31,9 @@ animated_vms.image_save("animaed.gif")
 
 #Generate Checksum
 print(animated_vms.generated_checksum())
+
+#Generate VMI
+VMS.vmi_gen("test.vmi", "slurmking.com", "test VMI file")
 ```
 
 
