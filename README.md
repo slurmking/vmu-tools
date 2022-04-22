@@ -31,6 +31,9 @@ animated_vms.image_save("animaed.gif")
 
 #Generate Checksum
 print(animated_vms.generated_checksum())
+
+#Generate VMI
+VMS.vmi_gen("test.vmi", "slurmking.com", "test VMI file")
 ```
 
 
