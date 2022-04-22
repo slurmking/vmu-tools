@@ -3,7 +3,7 @@ import os
 import unicodedata
 from datetime import datetime
 from pathlib import Path
-import icon
+from .icon import Icon
 
 
 # Static functions
@@ -210,11 +210,11 @@ class Vms_file:
         """Saves vms icon to file output"""
         if self.vms_type == 3:
             if not mono:
-                icon.Icon.gen(self.info["icon_bitmaps"], self.info["icon_palette"], 1, 1, mono=False, save=save)
+                Icon.gen(self.info["icon_bitmaps"], self.info["icon_palette"], 1, 1, mono=False, save=save)
             else:
-                icon.Icon.gen(self.info["monochrome_bitmap"], self.info["icon_palette"], 1, 1, mono=True, save=save)
+                Icon.gen(self.info["monochrome_bitmap"], self.info["icon_palette"], 1, 1, mono=True, save=save)
         else:
-            icon.Icon.gen(self.info["icon_bitmaps"], self.info["icon_palette"], self.info["icon_count"],
+            Icon.gen(self.info["icon_bitmaps"], self.info["icon_palette"], self.info["icon_count"],
                           self.info["animation_speed"], mono=False, save=save)
 
     def vmi_gen(self, save, copyright_message, description):
