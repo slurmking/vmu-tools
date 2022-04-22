@@ -154,10 +154,6 @@ fabric.properties
 test_files/
 scratch/
 dc/
-*.VMI
-*.VMS
-*.vmi
-*.vms
 *.gif
 *.png
 *.bin
