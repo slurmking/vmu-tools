@@ -17,8 +17,13 @@ setup(
     author="slurmking",
     url="https://github.com/slurmking/vmu-tools",
     description="A set of tools for Dreamcast VMU icon",
-    version="0.1.0",
+    long_description=README,
+    long_description_content_type='text/markdown',
+    version="0.1.4",
     packages=find_packages(include=['vmut', 'vmut.*']),
+    install_requires=[
+        "Pillow",
+    ],
     classifiers=[
         "Programming Language :: Python :: 3.0",
         "Programming Language :: Python :: 3.9",
