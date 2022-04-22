@@ -7,13 +7,13 @@ import vmut
 animated_vms = vmut.vms.load_vms("example_files/SCALIBUR.VMS")
 print(animated_vms.info)
 animated_vms.image_save("animaed.gif")
-print(animated_vms.generated_checksum())
+print(animated_vms.generated_crc())
 
 # vms_redner
 gamesave_vms = vmut.vms.load_vms("example_files/THEME001.VMS")
 print(gamesave_vms.info)
 gamesave_vms.image_save("gamesave.png")
-print(gamesave_vms.generated_checksum())
+print(gamesave_vms.generated_crc())
 
 # VMI generate
 gamesave_vms.vmi_gen("test.vmi", "slurmking.com", "test VMI file")
@@ -28,7 +28,7 @@ ICONDATA_vms = vmut.vms.load_vms("example_files/ICONDATA.VMS")
 print(ICONDATA_vms.info)
 ICONDATA_vms.image_save("ICONDATA.png")
 ICONDATA_vms.image_save("monoICONDATA.png", mono=True)
-print(ICONDATA_vms.generated_checksum())
+print(ICONDATA_vms.generated_crc())
 
 # VMI Read
 VMI_read = vmut.vms.Vmi_file("example_files/THEME001.VMI")

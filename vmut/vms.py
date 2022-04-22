@@ -184,8 +184,8 @@ class Vms_file:
             for key, value in self.data.items():
                 vms_file.write(value[0].bytes)
 
-    def generated_checksum(self):
-        """Generates new checksum"""
+    def generated_crc(self):
+        """Generates new crc"""
         game_data = bytearray()
         for key, value in self.data.items():
             if key == "crc":
