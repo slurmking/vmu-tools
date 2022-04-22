@@ -21,13 +21,13 @@ import vmut
 VMS = vmut.vms.load_vms("example_files/SCALIBUR.VMS")  
 
 #Print info
-print(animated_vms.info)  
+print(VMS.info)  
 
 #Save icon
-animated_vms.image_save("animaed.gif")  
+VMS.image_save("animaed.gif")  
 
 #Generate Checksum
-print(animated_vms.generated_checksum())
+print(VMS.generated_checksum())
 ```
 
 
