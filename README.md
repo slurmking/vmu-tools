@@ -17,20 +17,21 @@ pip install vmu-tools --upgrade
 ```
 
 ### Example
+
 ```python
 import vmut
 
-#Load .VMS file
-VMS = vmut.vms.load_vms("example_files/SCALIBUR.VMS")  
+# Load .VMS file
+VMS = vmut.vms.load_vms("example_files/SCALIBUR.VMS")
 
-#Print info
-print(animated_vms.info)  
+# Print info
+print(animated_vms.info)
 
-#Save icon
-animated_vms.image_save("animaed.gif")  
+# Save icon
+animated_vms.image_save("animaed.gif")
 
-#Generate Checksum
-print(animated_vms.generated_checksum())
+# Generate Checksum
+print(animated_vms.generated_crc())
 
 #Generate VMI
 VMS.vmi_gen("test.vmi", "slurmking.com", "test VMI file")
