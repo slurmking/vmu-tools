@@ -182,7 +182,10 @@ class Vms_file:
         """Creates VMS file from the self.data dictionary"""
         with open(f"{output_location}", "wb", buffering=0) as vms_file:
             for key, value in self.data.items():
-                vms_file.write(value[0].bytes)
+                if type(value) is tuple:
+                    vms_file.write(value[0].bytes)
+                else:
+                    vms_file.write(value)
 
     def generated_crc(self):
         """Generates new crc"""
@@ -194,17 +197,21 @@ class Vms_file:
                 continue
             else:
                 game_data.extend(value[0].bytes)
-        xored_bit = 0
+        xored_byte = 0
         for bit in game_data:
-            xored_bit ^= (bit << 8)
+            xored_byte ^= (bit << 8)
             byte_steps = 0
             while byte_steps < 8:
-                if xored_bit & 0x8000:
-                    xored_bit = ((xored_bit << 1) ^ 4129)
+                if xored_byte & 0x8000:
+                    xored_byte = ((xored_byte << 1) ^ 4129)
                 else:
-                    xored_bit = (xored_bit << 1)
+                    xored_byte = (xored_byte << 1)
                 byte_steps += 1
-        return hex(xored_bit & 0xffff)
+        return (xored_byte & 0xffff).to_bytes(2, "little")
+
+    def fix_crc(self):
+        self.data["crc"] = self.generated_crc()
+        self.update_file(self.vms_file.name)
 
     def image_save(self, save, mono=False):
         """Saves vms icon to file output"""
@@ -215,7 +222,7 @@ class Vms_file:
                 Icon.gen(self.info["monochrome_bitmap"], self.info["icon_palette"], 1, 1, mono=True, save=save)
         else:
             Icon.gen(self.info["icon_bitmaps"], self.info["icon_palette"], self.info["icon_count"],
-                          self.info["animation_speed"], mono=False, save=save)
+                     self.info["animation_speed"], mono=False, save=save)
 
     def vmi_gen(self, save, copyright_message, description):
         """generates VMI from VMS class info"""

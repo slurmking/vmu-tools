@@ -25,16 +25,19 @@ import vmut
 VMS = vmut.vms.load_vms("example_files/SCALIBUR.VMS")
 
 # Print info
-print(animated_vms.info)
+print(VMS.info)
 
 # Save icon
-animated_vms.image_save("animaed.gif")
+VMS.image_save("animaed.gif")
 
 # Generate Checksum
-print(animated_vms.generated_crc())
+print(VMS.generated_crc())
 
 #Generate VMI
 VMS.vmi_gen("test.vmi", "slurmking.com", "test VMI file")
+
+#Fix crc
+VMS.fix_crc()
 ```
 
 

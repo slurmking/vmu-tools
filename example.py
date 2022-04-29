@@ -7,13 +7,19 @@ import vmut
 animated_vms = vmut.vms.load_vms("example_files/SCALIBUR.VMS")
 print(animated_vms.info)
 animated_vms.image_save("animaed.gif")
-print(animated_vms.generated_crc())
 
 # vms_redner
 gamesave_vms = vmut.vms.load_vms("example_files/THEME001.VMS")
 print(gamesave_vms.info)
 gamesave_vms.image_save("gamesave.png")
-print(gamesave_vms.generated_crc())
+
+# vms_fix crc
+broken_vms = vmut.vms.load_vms("example_files/broken.VMS")
+print(broken_vms.info["crc"])
+print(broken_vms.generated_crc())
+broken_vms.fix_crc()
+
+
 
 # VMI generate
 gamesave_vms.vmi_gen("test.vmi", "slurmking.com", "test VMI file")
