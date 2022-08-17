@@ -45,7 +45,7 @@ VMS.fix_crc()
 ### Convert image to VMU Icon
 > For best results use a square image scaled to 32x32
 
-<img src="example_files/slurm.png" width="100" /><img src="example_files/ICONDATA_GEN.png" width="100" /><img src="example_files/ICONDATA_GEN_MONO.png" width="100" />
+<img src="https://raw.githubusercontent.com/slurmking/vmu-tools/main/example_files/slurm.png" width="100" /><img src="https://raw.githubusercontent.com/slurmking/vmu-tools/main/example_files/ICONDATA_GEN.png" width="100" /><img src="https://raw.githubusercontent.com/slurmking/vmu-tools/main/example_files/ICONDATA_GEN_MONO.png" width="100" />
 ```python
 vmut.ICONDATA(image="example_files/slurm.png", threshold=160, invert=True).save()
 ```
