@@ -2,14 +2,14 @@
 
 # VMU Tools
 
-This python project is designed to be a fully loaded suite of VMU tools for the dreamcast.
+This python project is designed to be a fully loaded suite of VMU tools for the Dreamcast.
 
 ## Features
 * Read and extract data from .VMS and  .VMI files
 * Generate icons from ICONDATA and VMS files
 * Generate VMI files from VMS 
 * Read and manipulate VMU dumps files
-* Extract and upload savegames from VMU dump files
+* Extract and upload save games from VMU dump files
 
 
 
@@ -58,7 +58,8 @@ vmut.ICONDATA(image="example_files/slurm.png", threshold=160, invert=True).save(
 * Change VMU color
 * Convert VMU dumps to and from .DCI files
 * Modify VMU ICONDATA from VMU dumps
-* Possibly implament a built in webserver for file transfers from Dreamcast
+* Possible GUI / Electron app
+* Possibly implement a built-in webserver for file transfers from Dreamcast
 
 
 
