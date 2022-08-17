@@ -38,13 +38,15 @@ VMS.vmi_gen("test.vmi", "slurmking.com", "test VMI file")
 
 #Fix crc
 VMS.fix_crc()
+
+#Create ICONDATA from image
+vmut.ICONDATA(image="example_files/slurm.png", threshold=160, invert=True).save()
 ```
 
 
 
 
 ### Roadmap
-* Create ICONDATA and VMS icons from PNG and JPEG
 * Change VMU color
 * Convert VMU dumps to and from .DCI files
 * Modify VMU ICONDATA from VMU dumps
