@@ -16,10 +16,10 @@ setup(
     name="vmu_tools",
     author="slurmking",
     url="https://github.com/slurmking/vmu-tools",
-    description="A set of tools for Dreamcast VMU icon",
+    description="A set of tools for Dreamcast VMUcle icon",
     long_description=README,
     long_description_content_type='text/markdown',
-    version="0.1.6",
+    version="0.1.7",
     packages=find_packages(include=['vmut', 'vmut.*']),
     install_requires=[
         "Pillow",
