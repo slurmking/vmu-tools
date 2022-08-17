@@ -4,20 +4,23 @@
 
 This python project is designed to be a fully loaded suite of VMU tools for the dreamcast.
 
-### Features
+## Features
 * Read and extract data from .VMS and  .VMI files
 * Generate icons from ICONDATA and VMS files
 * Generate VMI files from VMS 
 * Read and manipulate VMU dumps files
 * Extract and upload savegames from VMU dump files
 
-### Install 
+
+
+## Install 
 ``` python
 pip install vmu-tools --upgrade
 ```
 
-### Example
 
+## Examples
+### As a python package
 ```python
 import vmut
 
@@ -38,15 +41,20 @@ VMS.vmi_gen("test.vmi", "slurmking.com", "test VMI file")
 
 #Fix crc
 VMS.fix_crc()
+```
+### Convert image to VMU Icon
+> For best results use a square image scaled to 32x32
 
-#Create ICONDATA from image
+<img src="example_files/slurm.png" width="100" /><img src="example_files/ICONDATA_GEN.png" width="100" /><img src="example_files/ICONDATA_GEN_MONO.png" width="100" />
+```python
 vmut.ICONDATA(image="example_files/slurm.png", threshold=160, invert=True).save()
 ```
 
 
 
 
-### Roadmap
+## Roadmap
+* Create/update VMS icons from PNG and JPEG
 * Change VMU color
 * Convert VMU dumps to and from .DCI files
 * Modify VMU ICONDATA from VMU dumps
