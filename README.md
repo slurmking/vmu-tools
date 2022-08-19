@@ -10,7 +10,7 @@ This python project is designed to be a fully loaded suite of VMU tools for the 
 * Generate VMI files from VMS 
 * Read and manipulate VMU dumps files
 * Extract and upload save games from VMU dump files
-
+* update VMS icons from PNG and JPEG
 
 
 ## Install 
@@ -46,15 +46,15 @@ VMS.fix_crc()
 > For best results use a square image scaled to 32x32
 
 <img src="https://raw.githubusercontent.com/slurmking/vmu-tools/main/example_files/slurm.png" width="100" /><img src="https://raw.githubusercontent.com/slurmking/vmu-tools/main/example_files/ICONDATA_GEN.png" width="100" /><img src="https://raw.githubusercontent.com/slurmking/vmu-tools/main/example_files/ICONDATA_GEN_MONO.png" width="100" />
+
 ```python
-vmut.ICONDATA(image="example_files/slurm.png", threshold=160, invert=True).save()
+vmut.Icon(image="example_files/slurm.png", threshold=160, invert=True).save()
 ```
 
 
 
 
 ## Roadmap
-* Create/update VMS icons from PNG and JPEG
 * Change VMU color
 * Convert VMU dumps to and from .DCI files
 * Modify VMU ICONDATA from VMU dumps
