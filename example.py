@@ -21,8 +21,11 @@ broken_vms.fix_crc()
 
 # vms_replace icon
 old_icon = vmut.vms.load_vms("example_files/THEME001.VMS")
-old_icon.update_icon('example_files/ICONDATA.png', 'replaced_icon.vms')
+old_icon.update_icon('example_files/ICONDATA.png')
 old_icon.image_save("replaced_icon.png")
+old_icon.export("REPLACE.vms")
+new_icon = vmut.vms.load_vms("REPLACE.vms")
+new_icon.vmi_gen("REPLACE.vmi", "slurmking.com", "replaced_icon")
 
 # VMI generate
 gamesave_vms.vmi_gen("test.vmi", "slurmking.com", "test VMI file")
