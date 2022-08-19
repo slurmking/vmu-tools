@@ -234,7 +234,6 @@ class Vms_file:
 
     def fix_crc(self):
         self.data["crc"] = self.generated_crc()
-        self.export(self.vms_file.name)
 
     def image_save(self, save, mono=False):
         """Saves vms icon to file output"""
