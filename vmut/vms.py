@@ -6,8 +6,13 @@ from pathlib import Path
 from .icon import Img, Icon
 
 
-# Static functions
+# Exceptions
 
+class ResourceNameTooLong(Exception):
+    pass
+
+
+# Static functions
 def text_read(text):
     """Decodes binary to cp932 text and removes non unicode characters"""
     text = text.decode('cp932', errors='replace')
@@ -165,14 +170,12 @@ class Vmi_file:
 class Vmu_data:
     """Creates a data object to read VMU info"""
 
-    def update(self,binary_data):
+    def update(self, binary_data):
         self.bytes = binary_data
         self.hex = binary_data.hex()
         self.text = text_read(binary_data)
         self.little_int = int_read(binary_data, "little")
         self.big_int = int_read(binary_data, "big")
-
-
 
     def __init__(self, file, offset, length):
         file.seek(offset)
@@ -196,15 +199,14 @@ class Vms_file:
                 else:
                     vms_file.write(value)
 
-    def update_icon(self,file,output_location):
+    def update_icon(self, file, output_location, crc_update=False):
         """Update icon with image file"""
         icon_image = Icon(image=file)
-        # Pallete print(icon_image.img[:32])
-        # image print(icon_image.img[32:])
         self.data['icon_palette'][0].update(icon_image.img[:32])
         self.data['icon_bitmaps'][0].update(icon_image.img[32:])
-        # self.data['icon_palette'][0].bytes = icon_image.img[:32]
-        # self.data['icon_bitmaps'][0].bytes = icon_image.img[32:]
+        if crc_update:
+            self.fix_crc()
+            print("fixing crc")
         self.update_file(output_location)
         self.info = data_read(self.data)
 
@@ -245,8 +247,10 @@ class Vms_file:
             Img.gen_img(self.info["icon_bitmaps"], self.info["icon_palette"], self.info["icon_count"],
                         self.info["animation_speed"], mono=False, save=save)
 
-    def vmi_gen(self, save, copyright_message, description):
+    def vmi_gen(self, save, copyright_message, description, vms_resource_name=""):
         """generates VMI from VMS class info"""
+        if len(vms_resource_name) > 7:
+            raise ResourceNameTooLong()
         copyright_message = copyright_message[:32]
         description = description[:32]
         if self.vms_type == 2:
@@ -262,7 +266,8 @@ class Vms_file:
         weekday = 0
         vmi_version = 0
         file_number = 1
-        vms_resource_name = os.path.basename(self.vms_file.name).replace('.VMS', '')
+        if not vms_resource_name:
+            vms_resource_name = os.path.basename(self.vms_file.name).replace('.VMS', '')
         vms_file_name = os.path.basename(self.vms_file.name)
         unknown_value = 0
         file_size = os.path.getsize(self.file)
