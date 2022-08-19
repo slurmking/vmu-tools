@@ -19,7 +19,7 @@ setup(
     description="A set of tools for Dreamcast VMUcle icon",
     long_description=README,
     long_description_content_type='text/markdown',
-    version="0.1.7",
+    version="0.1.9",
     packages=find_packages(include=['vmut', 'vmut.*']),
     install_requires=[
         "Pillow",
