@@ -190,7 +190,8 @@ class Vmu_data:
 class Vms_file:
     """VMS file object"""
 
-    def update_file(self, output_location):
+    def export(self, output_location):
+        print('ping')
         """Creates VMS file from the self.data dictionary"""
         with open(f"{output_location}", "wb", buffering=0) as vms_file:
             for key, value in self.data.items():
@@ -199,7 +200,7 @@ class Vms_file:
                 else:
                     vms_file.write(value)
 
-    def update_icon(self, file, output_location, crc_update=False):
+    def update_icon(self, file, crc_update=False):
         """Update icon with image file"""
         icon_image = Icon(image=file)
         self.data['icon_palette'][0].update(icon_image.img[:32])
@@ -207,7 +208,6 @@ class Vms_file:
         if crc_update:
             self.fix_crc()
             print("fixing crc")
-        self.update_file(output_location)
         self.info = data_read(self.data)
 
     def generated_crc(self):
@@ -234,7 +234,7 @@ class Vms_file:
 
     def fix_crc(self):
         self.data["crc"] = self.generated_crc()
-        self.update_file(self.vms_file.name)
+        self.export(self.vms_file.name)
 
     def image_save(self, save, mono=False):
         """Saves vms icon to file output"""
@@ -268,6 +268,10 @@ class Vms_file:
         file_number = 1
         if not vms_resource_name:
             vms_resource_name = os.path.basename(self.vms_file.name).replace('.VMS', '')
+            vms_resource_name = os.path.basename(self.vms_file.name).replace('.vms', '')
+        else:
+            vms_resource_name = Path(vms_resource_name).name
+        print(vms_resource_name)
         vms_file_name = os.path.basename(self.vms_file.name)
         unknown_value = 0
         file_size = os.path.getsize(self.file)
