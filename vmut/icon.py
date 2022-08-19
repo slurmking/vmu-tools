@@ -71,7 +71,7 @@ def img_gen(bitmap_bytes, palette_bytes, mono=False):
     return img
 
 
-class ICONDATA:
+class Icon:
 
     @staticmethod
     def img_to_mono(file, invert=False, threshold=120, export=False, export_location=""):
@@ -138,18 +138,18 @@ class ICONDATA:
                 palette_value.append(index)
         for x in range(0, 1023, 2):
             image_bytes.append(int(f"{palette_value[x]:x}{palette_value[x + 1]:x}", 16))
-
-        image_padding = bytearray()
-        for x in range(320):
-            image_padding.append(26)
-
-        return palette_bytes + image_bytes + image_padding
+        return palette_bytes + image_bytes
 
     """ICONDATA Object"""
 
     def save(self, location=""):
+        image_padding = bytearray()
+        for x in range(320):
+            image_padding.append(26)
+
         with open(f"{location}ICONDATA.VMS", "wb", buffering=0) as vms_file:
             vms_file.write(self.data)
+            vms_file.write(image_padding)
 
     def __init__(self, image, threshold=160, invert=False, export=False, export_location=""):
         self.palette = []
