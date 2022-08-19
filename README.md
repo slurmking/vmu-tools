@@ -11,7 +11,7 @@ This python project is designed to be a fully loaded suite of VMU tools for the 
 * Read and manipulate VMU dumps files
 * Extract and upload save games from VMU dump files
 * update VMS icons from PNG and JPEG
-> Checkout examples file and example files for all features
+> Checkout examples.py and example files for all features
 
 ## Install 
 ``` python
