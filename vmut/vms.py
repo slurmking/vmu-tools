@@ -3,7 +3,7 @@ import os
 import unicodedata
 from datetime import datetime
 from pathlib import Path
-from .icon import Img
+from .icon import Img, Icon
 
 
 # Static functions
@@ -165,6 +165,15 @@ class Vmi_file:
 class Vmu_data:
     """Creates a data object to read VMU info"""
 
+    def update(self,binary_data):
+        self.bytes = binary_data
+        self.hex = binary_data.hex()
+        self.text = text_read(binary_data)
+        self.little_int = int_read(binary_data, "little")
+        self.big_int = int_read(binary_data, "big")
+
+
+
     def __init__(self, file, offset, length):
         file.seek(offset)
         binary_data = file.read(length)
@@ -186,6 +195,18 @@ class Vms_file:
                     vms_file.write(value[0].bytes)
                 else:
                     vms_file.write(value)
+
+    def update_icon(self,file,output_location):
+        """Update icon with image file"""
+        icon_image = Icon(image=file)
+        # Pallete print(icon_image.img[:32])
+        # image print(icon_image.img[32:])
+        self.data['icon_palette'][0].update(icon_image.img[:32])
+        self.data['icon_bitmaps'][0].update(icon_image.img[32:])
+        # self.data['icon_palette'][0].bytes = icon_image.img[:32]
+        # self.data['icon_bitmaps'][0].bytes = icon_image.img[32:]
+        self.update_file(output_location)
+        self.info = data_read(self.data)
 
     def generated_crc(self):
         """Generates new crc"""
